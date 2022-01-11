@@ -1,6 +1,6 @@
 from django.shortcuts import render, resolve_url
-from .serializers import VoiceSerializer, VersionSettingSerializer, FlatVersionSerializer
-from .models import Voice, VersionSetting, FlatVersionSettings
+from .serializers import VoiceSerializer, VersionSettingSerializer, FlatVersionSerializer, VasiSerializer, ChittiSerializer, EatNPlaySettingsSerializer
+from .models import Voice, VersionSetting, FlatVersionSettings, ChittiSettings, VasiSettings, EatNPlaySettings
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -113,3 +113,55 @@ def DayFilterView(request):
     v = Voice.objects.filter(updated_at__date = date.today())
     print(v)
     return render(request, 'api/all_voices.html', {'v':v})
+
+
+#####  CHITTI VIEWS  #####
+@api_view(['GET'])
+def ChittiSettingsView(request):
+    try:
+        c = ChittiSettings.objects.latest('pk')
+        serializer = ChittiSerializer(c, many = False)
+        return Response(serializer.data)
+    except:
+        return HttpResponse('<br><br><center><h1>found an issue</center></h1>')
+    
+@api_view(['GET'])
+def ByChittiVerName(request, ver_name):
+    try:
+        v = ChittiSettings.objects.get(version_name = ver_name)
+        serializers = ChittiSerializer(v, many = False)
+        return Response(serializers.data)
+    except:
+        return HttpResponse('<br><br><center><h1>No Version Found with the name</center></h1>')
+
+
+#####  VASI VIEWS    #####
+@api_view(['GET'])
+def VasiSettingsView(request):
+    try:
+        v = VasiSettings.objects.latest('pk')
+        serializer = VasiSerializer(v, many = False)
+        return Response(serializer.data)
+    except:
+        return HttpResponse('<br><br><center><h1>found an issue</center></h1>')
+
+
+@api_view(['GET'])
+def ByVasiVerName(request, ver_name):
+    try:
+        v = VasiSettings.objects.get(version_name = ver_name)
+        serializers = VasiSerializer(v, many = False)
+        return Response(serializers.data)
+    except:
+        return HttpResponse('<br><br><center><h1>No Version Found with the name</center></h1>')
+
+
+######    Eat N Play Views    #################
+@api_view(['GET'])
+def eatnplay(request):
+    try:
+        v = EatNPlaySettings.objects.latest('pk')
+        serialzers = EatNPlaySettingsSerializer(v, many = False)
+        return Response(serialzers.data)
+    except:
+        return HttpResponse('<br><br><center><h1>No Data Found, Please add some data</center></h1>')

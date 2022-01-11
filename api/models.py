@@ -55,3 +55,46 @@ class FlatVersionSettings(models.Model):
 
     def __str__(self):
         return str(self.version_name)
+
+
+#########  CHITTI SETTINGS ################
+class ChittiSettings(models.Model):
+    version_name = models.CharField(max_length =30, help_text = 'enter version of the CHITTI weights')
+    git_command = models.CharField(max_length = 300, help_text = 'enter the git link here')
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        verbose_name = 'CHITTI Setting'
+        verbose_name_plural = 'CHITTI Settings'
+
+    def __str__(self):
+        return str(self.version_name)
+
+######### VASI SETTINGS   #################
+class VasiSettings(models.Model):
+    version_name = models.CharField(max_length =30, help_text = 'enter version of the VASI weights')
+    git_command = models.CharField(max_length = 300, help_text = 'enter the git link here')
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        verbose_name = 'VASI Setting'
+        verbose_name_plural = 'VASI Settings'
+
+    def __str__(self):
+        return str(self.version_name)
+
+############    EATNPLAY SETTINGS   #######################
+class EatNPlaySettings(models.Model):
+    version_name = models.CharField(max_length =30, help_text = 'enter version of the EatnPlay weights')
+    git_command = models.CharField(max_length = 300, help_text = 'enter the git link here')
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        verbose_name = 'EatNPlay Setting'
+        verbose_name_plural = 'EatNPlay Settings'
+
+    def __str__(self):
+        return str(self.version_name)

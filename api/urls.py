@@ -22,4 +22,13 @@ urlpatterns = [
 
     path('today', views.DayFilterView, name = 'today'),
 
+     # CHITTI
+    path('chitti-setting/latest', views.ChittiSettingsView, name = 'chitti-setting'),
+    path('chitti-version/by-name/<str:ver_name>', views.ByChittiVerName, name = 'by-chitti-name'),
+    # VASI
+    path('vasi-settings/latest', views.VasiSettingsView, name = 'vasi-settings'),
+    path('vasi-version/by-name/<str:ver_name>', views.ByVasiVerName, name = 'by-vasi-name'),
+    #eatnplay
+    path('eatnplay-version/latest', views.eatnplay, name = 'recent-eatnplay'),
+
 ]

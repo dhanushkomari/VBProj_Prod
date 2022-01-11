@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import VersionSetting, Voice, FlatVersionSettings
+from . models import VersionSetting, Voice, FlatVersionSettings, ChittiSettings, VasiSettings, EatNPlaySettings
 
 # Register your models here.
 class VoiceAdmin(admin.ModelAdmin):
@@ -13,3 +13,6 @@ class VoiceAdmin(admin.ModelAdmin):
 admin.site.register(Voice, VoiceAdmin)
 admin.site.register(VersionSetting)
 admin.site.register(FlatVersionSettings)
+admin.site.register(ChittiSettings)
+admin.site.register(VasiSettings)
+admin.site.register(EatNPlaySettings)
